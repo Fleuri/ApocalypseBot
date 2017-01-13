@@ -24,7 +24,7 @@ else:
         comments_replied_to = list(filter(None, comments_replied_to))
 
 # Get the top 5 values from our subreddit
-subreddit = reddit.subreddit('apocalypseworld')
+subreddit = reddit.subreddit('ApocalypseWorld')
 for submission in subreddit.hot(limit=10):
     for comment in submission.comments:
         if comment.id not in comments_replied_to:

@@ -2,7 +2,7 @@ import praw
 import sys
 
 reddit = praw.Reddit('bot1')
-subreddit = reddit.subreddit('apocalypseworld')
+subreddit = reddit.subreddit('ApocalypseWorld')
 submission = None
 if len(sys.argv) == 2:
     submission = subreddit.submit(sys.argv[1])
