@@ -24,7 +24,7 @@
 # 
 # m h  dom mon dow   command
 
-5 * * * *  ~/ApocalypseBot/env/bin/python love_back.py
+5 * * * *  ~/ApocalypseBot/env/bin/python ~/ApocalypseBot/love_back.py
 30 8 * * 1 ~/ApocalypseBot/env/bin/python ~/ApocalypseBot/post_submission.py "Stupid Question Monday"
 30 8 * * 3 ~/ApocalypseBot/env/bin/python ~/ApocalypseBot/post_submission.py "Wednesday Workshop" "Use this as a place to bring your custom playbooks, moves, threats, etc. Ask for help on your setting, ask for help on a character you're working on. It's just meant to be a space for us to help each other work on the custom pieces of the game."
 30 8 * * 4 ~/ApocalypseBot/env/bin/python ~/ApocalypseBot/post_submission.py "Barf Forth Apocalyptica Thursday" "Post your characters, npc's, threats, locations, vehicles, whatever and let the rest of us barf forth Apocalyptica upon it." 
