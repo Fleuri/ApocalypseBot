@@ -15,7 +15,7 @@ reddit = praw.Reddit('bot1')
 if not os.path.isfile("comments_replied_to.txt"):
     comments_replied_to = []
 
-# If we have run the code before, load the list of posts we have replied to
+# If we have run the code before, load the list of comments we have replied to
 else:
     # Read the file into a list and remove any empty values
     with open("comments_replied_to.txt", "r") as f:
@@ -23,12 +23,12 @@ else:
         comments_replied_to = comments_replied_to.split("\n")
         comments_replied_to = list(filter(None, comments_replied_to))
 
-# Get the top 5 values from our subreddit
+# Get the top 10 values from our subreddit
 subreddit = reddit.subreddit('ApocalypseWorld')
-for submission in subreddit.hot(limit=10):
-    for comment in submission.comments:
+for submission in subreddit.hot(limit=10): #For every submission
+    for comment in submission.comments: #For every comment. Note: Doesn't look into 'Load More' deeper comment trees. Too complicated for such a silly script
         if comment.id not in comments_replied_to:
-            if re.search('(?=-*love)(?=.*/u/Apocalypse_bot)', comment.body, re.IGNORECASE):
+            if re.search('(?=-*love)(?=.*/u/Apocalypse_bot)', comment.body, re.IGNORECASE): #If bot 'love' and bot's name mentioned in a comment: Reply.
                 comment.reply("I love you too /u/" + comment.author.name)
                 print("Bot replying to : ", submission.title)
             # Store the current id into our list
