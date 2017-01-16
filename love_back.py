@@ -18,7 +18,7 @@ if not os.path.isfile("comments_replied_to.txt"):
 # If we have run the code before, load the list of posts we have replied to
 else:
     # Read the file into a list and remove any empty values
-    with open("posts_replied_to.txt", "r") as f:
+    with open("comments_replied_to.txt", "r") as f:
         comments_replied_to = f.read()
         comments_replied_to = comments_replied_to.split("\n")
         comments_replied_to = list(filter(None, comments_replied_to))
@@ -28,7 +28,6 @@ subreddit = reddit.subreddit('ApocalypseWorld')
 for submission in subreddit.hot(limit=10):
     for comment in submission.comments:
         if comment.id not in comments_replied_to:
-            print(comment.body)
             if re.search('(?=-*love)(?=.*/u/Apocalypse_bot)', comment.body, re.IGNORECASE):
                 comment.reply("I love you too /u/" + comment.author.name)
                 print("Bot replying to : ", submission.title)
@@ -37,5 +36,5 @@ for submission in subreddit.hot(limit=10):
 
 # Write our updated list back to the file
 with open("comments_replied_to.txt", "w") as f:
-    for post_id in comments_replied_to:
-        f.write(post_id + "\n")
+    for comment_id in comments_replied_to:
+        f.write(comment_id + "\n")
