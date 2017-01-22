@@ -1,12 +1,25 @@
 #!/usr/bin/python
 import praw
+import re
+from random import randint
 
-reddit = praw.Reddit('bot1')
 
-subreddit = reddit.subreddit("pythonforengineers")
+def process_comments():
+    reddit = praw.Reddit('bot1')
 
-for submission in subreddit.hot(limit=5):
-    print("Title: ", submission.title)
-    print("Text: ", submission.selftext)
-    print("Score: ", submission.score)
-    print("---------------------------------\n")
+    for comment in reddit.subreddit('pythonforengineers').stream.comments():
+         if re.search('!roll', comment.body, re.IGNORECASE):
+             reply= comment.reply(roll())
+             print("Replying: " + reply.body)
+
+def roll():
+
+    roll1 = d6()
+    roll2 = d6()
+    return "Rolled {0} + {1} = {2}".format(roll1, roll2, (roll1+roll2))
+
+def d6():
+    return randint(1,6)
+
+if __name__ == '__main__':
+    process_comments();
