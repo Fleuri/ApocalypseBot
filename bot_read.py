@@ -9,17 +9,34 @@ def process_comments():
 
     for comment in reddit.subreddit('pythonforengineers').stream.comments():
          if re.search('!roll', comment.body, re.IGNORECASE):
-             reply= comment.reply(roll())
-             print("Replying: " + reply.body)
+             #reply= comment.reply(roll())
+             reply = roll()
+             print("Replying: " + reply)
 
-def roll():
+def roll(number_of_dice=3, type=7, stat=0):
+    rolls = []
+    total = 0
+    i = 0
+    while i  < number_of_dice:
+        dieroll = die(type)
+        rolls.append(dieroll)
+        total = total + dieroll
+        i=i+1
 
-    roll1 = d6()
-    roll2 = d6()
-    return "Rolled {0} + {1} = {2}".format(roll1, roll2, (roll1+roll2))
+    rolled = ''
+    i = 0
+    print(rolls)
+    while i <number_of_dice-1:
+        print(i)
+        rolled = rolled + str(rolls[i]) + " + "
+        i = i+1
+    rolled = rolled + str(rolls[len(rolls)-1])
+    result_string = "Rolled: " + rolled +  " = " + str(total)
 
-def d6():
-    return randint(1,6)
+    return result_string
+
+def die(type):
+    return randint(1,type)
 
 if __name__ == '__main__':
     process_comments();
