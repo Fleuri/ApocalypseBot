@@ -9,6 +9,12 @@ def process_comments():
 
     for comment in reddit.subreddit('pythonforengineers').stream.comments():
          if re.search('!roll', comment.body, re.IGNORECASE):
+             diespec = re.search(r'\dd\d', comment.body)
+             if diespec:
+                print(diespec.group(0))
+                specs = diespec.group(0).split('d')
+                print(specs[0])
+                print(specs[1])
              #reply= comment.reply(roll())
              reply = roll()
              print("Replying: " + reply)
