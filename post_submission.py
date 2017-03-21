@@ -15,4 +15,4 @@ elif len(sys.argv) == 3:
 else:
     print("You must provide arguments (Title, <selftext/url>)")
 # Sticky the post, will return in an error if no moderator rights. The post will be posted nevertheless, just not stickied.
-submission.mod.sticky()
+submission.mod.sticky(state=True, bottom=False)
